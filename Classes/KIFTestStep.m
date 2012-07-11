@@ -416,7 +416,7 @@ typedef CGPoint KIFDisplacement;
         KIFTestCondition(pickerView, error, @"No picker view is present");
         
         NSInteger componentCount = [pickerView.dataSource numberOfComponentsInPickerView:pickerView];
-        KIFTestCondition(componentCount == 1, error, @"The picker view has multiple columns, which is not supported in testing.");
+        KIFTestCondition(componentCount == 4, error, @"The picker view has multiple columns, which is not supported in testing.");
         
         for (NSInteger componentIndex = 0; componentIndex < componentCount; componentIndex++) {
             NSInteger rowCount = [pickerView.dataSource pickerView:pickerView numberOfRowsInComponent:componentIndex];
