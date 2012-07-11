@@ -17,6 +17,7 @@ MAKE_CATEGORIES_LOADABLE(UIApplication_KIFAdditions)
 
 @implementation UIApplication (KIFAdditions)
 
+
 - (UIAccessibilityElement *)accessibilityElementWithLabel:(NSString *)label;
 {
     return [self accessibilityElementWithLabel:label traits:UIAccessibilityTraitNone];
@@ -35,6 +36,33 @@ MAKE_CATEGORIES_LOADABLE(UIApplication_KIFAdditions)
         UIAccessibilityElement *element = [window accessibilityElementWithLabel:label accessibilityValue:value traits:traits];
         if (element) {
             return element;
+        }
+    }
+    
+    return nil;
+}
+
+- (UIAccessibilityElement *)accessibilityElementKindOfClass:(Class)class withLabel:(NSString *)label;
+{
+    return [self accessibilityElementKindOfClass:(Class)class withLabel:label traits:UIAccessibilityTraitNone];
+}
+
+- (UIAccessibilityElement *)accessibilityElementKindOfClass:(Class)class withLabel:(NSString *)label traits:(UIAccessibilityTraits)traits;
+{
+    return [self accessibilityElementKindOfClass:(Class)class withLabel:label accessibilityValue:nil traits:traits];
+}
+
+- (UIAccessibilityElement *)accessibilityElementKindOfClass:(Class)class withLabel:(NSString *)label accessibilityValue:(NSString *)value traits:(UIAccessibilityTraits)traits;
+{
+    // Go through the array of windows in reverse order to process the frontmost window first.
+    // When several elements with the same accessibilitylabel are present the one in front will be picked.
+    for (UIWindow *window in [self.windows reverseObjectEnumerator]) {
+
+        if ((class == nil) || [window subviewsWithClassNamePrefix:NSStringFromClass(class)]) {
+            UIAccessibilityElement *element = [window accessibilityElementWithLabel:label accessibilityValue:value traits:traits];
+            if (element) {
+                return element;
+            }
         }
     }
     
