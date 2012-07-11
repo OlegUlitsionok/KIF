@@ -194,13 +194,19 @@ typedef KIFTestStepResult (^KIFTestStepExecutionBlock)(KIFTestStep *step, NSErro
  */
 + (id)stepToWaitForViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits;
 
++ (id)stepToWaitForViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label;
+
++ (id)stepToWaitForViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label traits:(UIAccessibilityTraits)traits;
+
++ (id)stepToWaitForViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label value:(NSString*)value traits:(UIAccessibilityTraits)traits;
+
 /*!
- @method stepToWaitForAbsenceOfViewWithAccessibilityLabel:
- @abstract A step that waits until a view or accessibility element is no longer present.
- @discussion The view or accessibility element with the given label is found in the view hierarchy. If the element is found, then the step will attempt to wait until it isn't. Note that the view does not necessarily have to be visible on the screen, and may be behind another view or offscreen. Views with their hidden property set to YES are considered absent.
- @param label The accessibility label of the element to wait for.
- @result A configured test step.
- */
+@method stepToWaitForAbsenceOfViewWithAccessibilityLabel:
+@abstract A step that waits until a view or accessibility element is no longer present.
+@discussion The view or accessibility element with the given label is found in the view hierarchy. If the element is found, then the step will attempt to wait until it isn't. Note that the view does not necessarily have to be visible on the screen, and may be behind another view or offscreen. Views with their hidden property set to YES are considered absent.
+@param label The accessibility label of the element to wait for.
+@result A configured test step.
+*/
 + (id)stepToWaitForAbsenceOfViewWithAccessibilityLabel:(NSString *)label;
 
 /*!
@@ -317,6 +323,13 @@ typedef KIFTestStepResult (^KIFTestStepExecutionBlock)(KIFTestStep *step, NSErro
  */
 + (id)stepToTapViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits;
 
++ (id)stepToTapViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label;
+
++ (id)stepToTapViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label traits:(UIAccessibilityTraits)traits;
+
++ (id)stepToTapViewKindOfClass:(Class)class withAccessibilityLabel:(NSString*)label value:(NSString*)value traits:(UIAccessibilityTraits)traits;
+
+
 /*!
  @method stepToTapScreenAtPoint:
  @abstract A step that taps the screen at a particular point.
@@ -358,14 +371,16 @@ typedef KIFTestStepResult (^KIFTestStepExecutionBlock)(KIFTestStep *step, NSErro
  */
 + (id)stepToSelectPickerViewRowWithTitle:(NSString *)title;
 
++ (id)stepToSelectPickerViewRow:(int)row withTitle:(NSString*)title;
+
 /*!
- @method stepToSetOn:forSwitchWithAccessibilityLabel:
- @abstract A step that toggles a UISwitch into a specified position.
- @discussion The UISwitch with the given label is searched for in the view hierarchy. If the element isn't found or isn't currently tappable, then the step will attempt to wait until it is. Once the view is present, the step will return if it's already in the desired position. If the switch is tappable but not in the desired position, a tap event is simulated in the center of the view or element, toggling the switch into the desired position.
- @param switchIsOn The desired position of the UISwitch.
- @param label The accessibility label of the element to switch.
- @result A configured test step.
- */
+@method stepToSetOn:forSwitchWithAccessibilityLabel:
+@abstract A step that toggles a UISwitch into a specified position.
+@discussion The UISwitch with the given label is searched for in the view hierarchy. If the element isn't found or isn't currently tappable, then the step will attempt to wait until it is. Once the view is present, the step will return if it's already in the desired position. If the switch is tappable but not in the desired position, a tap event is simulated in the center of the view or element, toggling the switch into the desired position.
+@param switchIsOn The desired position of the UISwitch.
+@param label The accessibility label of the element to switch.
+@result A configured test step.
+*/
 + (id)stepToSetOn:(BOOL)switchIsOn forSwitchWithAccessibilityLabel:(NSString *)label;
 
 /*!
